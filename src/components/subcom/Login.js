@@ -8,11 +8,12 @@ export class Login extends Component {
         e.preventDefault();
         console.log('Hello')
 
-        let data = {username: e.target[0].value, password: e.target[1].value}
+        let username = e.target[0].value
+        let password = e.target[1].value
 
-        console.log(data);
+        let url = "http://localhost:5000/user/name/" + username + "/" + password
 
-        axios.get("http://localhost:5000/user/name", data).then(res => {
+        axios.get(url).then(res => {
             console.log(res);
         }).then(()=> {
             window.location.reload()
