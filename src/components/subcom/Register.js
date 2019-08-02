@@ -32,7 +32,7 @@ export class Register extends Component {
                 <Form onSubmit={this.addUser}>
                     <FormGroup row>
                         <Col sm={2}>
-                            <Label for="exampleEmail">Username</Label>
+                            <Label for="Username">Username</Label>
                         </Col>
                         <Col sm={3}>
                             <Input type="text" name="Username" placeholder="Enter Username" />
@@ -40,7 +40,7 @@ export class Register extends Component {
                     </FormGroup>
                     <FormGroup row>
                         <Col sm={2}>
-                            <Label for="exampleEmail">Email</Label>
+                            <Label for="Email">Email</Label>
                         </Col>
                         <Col sm={3}>
                             <Input type="email" name="email" placeholder="Enter Email" />
@@ -48,7 +48,7 @@ export class Register extends Component {
                     </FormGroup>
                     <FormGroup row>
                         <Col sm={2}>
-                            <Label for="exampleEmail">Password</Label>
+                            <Label for="Password">Password</Label>
                         </Col>
                         <Col sm={3}>
                             <Input type="password" name="Password" placeholder="Enter Password" />
@@ -56,7 +56,7 @@ export class Register extends Component {
                     </FormGroup>
                     <FormGroup row>
                         <Col sm={2}>
-                            <Label for="exampleEmail">Password Confirmation</Label>
+                            <Label for="Password2">Password Confirmation</Label>
                         </Col>
                         <Col sm={3}>
                             <Input type="password" name="Password2" placeholder="Confirm Password" />
