@@ -6,12 +6,10 @@ import { RouterHome } from './components/RouterHome.js';
 
 library.add(faUser, faUserPlus, faList);
 
-function App() {
+export default function App() {
   return (
     <div className="App">
       <RouterHome />
     </div>
   );
 }
-
-export default App;
