@@ -6,7 +6,7 @@ import { Register } from './subcom/Register.js';
 import { Login } from './subcom/Login.js';
 import { List } from './subcom/List.js';
 
-export class RouterHome extends Component {
+export default class RouterHome extends Component {
     render() {
         return (
             <Router>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
-export class Login extends Component {
+export default class Login extends Component {
 
     getUser = (e) => {
         e.preventDefault();
