@@ -16,7 +16,6 @@ router.get("/all", (req, res) => {
         errors.noUsers = "There are no users";
         res.status(404).json(errors);
       }
-
       res.json(users);
     })
     .catch(err => res.status(404).json({ noUsers: "There are no users" }));
