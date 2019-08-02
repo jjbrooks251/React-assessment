@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink as RRNavLink, BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route} from "react-router-dom";
 import { NavBar } from './subcom/Navbar.js';
 import { Home } from './subcom/Home.js';
 import { Register } from './subcom/Register.js';
