@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Col, Button, Form, FormGroup, Label, Input} from 'reactstrap';
+import { Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 export class Login extends Component {
 
@@ -15,12 +15,25 @@ export class Login extends Component {
 
         axios.get(url).then(res => {
             console.log(res);
-        }).then(()=> {
-            window.location.reload()
+
+        }).then(() => {
+            document.getElementById("username").placeholder = "Enter Username"
+            document.getElementById("password").placeholder = ""
+            document.getElementById("loginwork").innerText = "Successfully Logged in"
         }).catch(res => {
             console.log(res)
+            document.getElementById("loginfail").innerText = "Incorrect Username/Password"
         })
 
+    }
+
+    AlphaEntry = (e) => {
+        const re = /[0-9a-zA-Z]+/g;
+        if (!re.test(e.key)) {
+            e.preventDefault();
+            document.getElementById("userError").innerText = "Username cannot contain " + e.key
+            console.log(e.key + ' is not valid')
+        }
     }
 
     render() {
@@ -32,7 +45,10 @@ export class Login extends Component {
                             <Label for="username">Username</Label>
                         </Col>
                         <Col sm={3}>
-                            <Input type="text" name="Username" placeholder="Enter Username" />
+                            <Input type="text" id="username" name="Username" placeholder="Enter Username" onKeyPress={(e) => this.AlphaEntry(e)} required />
+                        </Col>
+                        <Col sm={3}>
+                            <p id='userError' style={{ color: 'red' }}></p>
                         </Col>
                     </FormGroup>
                     <FormGroup row>
@@ -40,7 +56,7 @@ export class Login extends Component {
                             <Label for="Password">Password</Label>
                         </Col>
                         <Col sm={3}>
-                            <Input type="password" name="Password" placeholder="Enter Password" />
+                            <Input type="password" id="password" name="Password" placeholder="Enter Password" required />
                         </Col>
                     </FormGroup>
                     <FormGroup check row>
@@ -49,6 +65,10 @@ export class Login extends Component {
                         </Col>
                     </FormGroup>
                 </Form>
+                <br></br>
+                <br></br>
+                <p1 style={{ color: 'green' }} id='loginwork'></p1>
+                <p1 style={{ color: 'red' }} id='loginfail'></p1>
             </div>
         )
     }

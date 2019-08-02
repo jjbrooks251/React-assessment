@@ -14,15 +14,21 @@ export class Register extends Component {
             password2: e.target[3].value
         }
 
-        console.log(account)
-
-        axios.post("http://localhost:5000/user/createUser", account).then(res => {
-            console.log(res);
-        }).then(() => {
-            window.location.reload();
-        }).catch(res => {
-            console.log(res);
-        })
+        if (account.email.indexOf(".") === -1) {
+            document.getElementById("emailError").innerText = "Email requires a '.'"
+        } else {
+            if (account.password === account.password2) {
+                axios.post("http://localhost:5000/user/createUser", account).then(res => {
+                    console.log(res);
+                }).then(() => {
+                    window.location.reload();
+                }).catch(res => {
+                    console.log(res);
+                })
+            } else {
+                document.getElementById("passMAtch").innerText = "Passwords do not match"
+            }
+        }
 
     }
 
@@ -30,28 +36,28 @@ export class Register extends Component {
         const re = /[0-9a-zA-Z]+/g;
         if (!re.test(e.key)) {
             e.preventDefault();
-            //getElementsByClassName
+            document.getElementById("userError").innerText = "Username cannot contain " + e.key
             console.log(e.key + ' is not valid')
         }
     }
 
-    formValid = () => {
-        'use strict';
-        window.addEventListener('load', function () {
-            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-            var forms = document.getElementsByClassName('register-form');
-            // Loop over them and prevent submission
-            var validation = Array.prototype.filter.call(forms, function (form) {
-                form.addEventListener('submit', function (event) {
-                    if (form.checkValidity() === false) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                    }
-                    form.classList.add('was-validated');
-                }, false);
-            });
-        }, false);
-    };
+    // formValid = () => {
+    //     'use strict';
+    //     window.addEventListener('load', function () {
+    //         // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    //         var forms = document.getElementsByClassName('register-form');
+    //         // Loop over them and prevent submission
+    //         var validation = Array.prototype.filter.call(forms, function (form) {
+    //             form.addEventListener('submit', function (event) {
+    //                 if (form.checkValidity() === false) {
+    //                     event.preventDefault();
+    //                     event.stopPropagation();
+    //                 }
+    //                 form.classList.add('was-validated');
+    //             }, false);
+    //         });
+    //     }, false);
+    // };
 
     render() {
         return (
@@ -63,11 +69,9 @@ export class Register extends Component {
                         </Col>
                         <Col sm={3}>
                             <Input type="text" name="Username" placeholder="Enter Username" onKeyPress={(e) => this.AlphaEntry(e)} required />
-                            <FormFeedback >on no</FormFeedback>
-                            <FormText>Hello</FormText>
                         </Col>
                         <Col sm={3}>
-                            <p id='userError'></p>
+                            <p id='userError' style={{ color: 'red' }}></p>
                         </Col>
 
                     </FormGroup>
@@ -78,13 +82,16 @@ export class Register extends Component {
                         <Col sm={3}>
                             <Input type="email" name="email" placeholder="Enter Email" required />
                         </Col>
+                        <Col sm={3}>
+                            <p id='emailError' style={{ color: 'red' }}></p>
+                        </Col>
                     </FormGroup>
                     <FormGroup row>
                         <Col sm={2}>
                             <Label for="Password">Password</Label>
                         </Col>
                         <Col sm={3}>
-                            <Input type="password" name="Password" placeholder="Enter Password" required />
+                            <Input type="password" id="Password" placeholder="Enter Password" required />
                         </Col>
                     </FormGroup>
                     <FormGroup row>
@@ -92,7 +99,10 @@ export class Register extends Component {
                             <Label for="Password2">Password Confirmation</Label>
                         </Col>
                         <Col sm={3}>
-                            <Input type="password" name="Password2" placeholder="Confirm Password" required />
+                            <Input type="password" id="Password2" placeholder="Confirm Password" required />
+                        </Col>
+                        <Col sm={3}>
+                            <p id='passMAtch' style={{ color: 'red' }}></p>
                         </Col>
                     </FormGroup>
                     <FormGroup check row>
